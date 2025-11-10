@@ -1,32 +1,30 @@
 # 📧 AspNetCore.EmailKit
 
-**AspNetCore.EmailKit**, ASP.NET Core projelerinde hızlı ve güvenli şekilde e-posta göndermek için tasarlanmış, 
-basit ama güçlü bir **Email Service Kit**'idir.  
-SMTP ayarlarını `appsettings.json` dosyasına tanımlayarak, tek satır kodla e-posta göndermeyi mümkün kılar.
+**AspNetCore.EmailKit** is a lightweight yet powerful email service kit designed for ASP.NET Core applications.  
+It allows you to send emails securely and effortlessly by defining SMTP settings in `appsettings.json` and calling a single line of code.
 
 ---
 
-## 🚀 Özellikler
+## 🚀 Features
 
-- [x] Basit kurulum (tek servis entegrasyonu)
-- [x] `IOptions` pattern ile **appsettings.json** desteği  
-- [x] Otomatik yapılandırma (`IServiceCollection` extension)
-- [x] `ILogger` ile hata ve başarı loglaması
-- [x] TLS/SSL destekli güvenli SMTP gönderimi
-- [x] Tek satırla mail gönderme (`await _emailService.SendEmailAsync(...)`)
+- [x] Simple setup (single service integration)
+- [x] `IOptions` pattern support with **appsettings.json**
+- [x] Automatic configuration via `IServiceCollection` extension
+- [x] Built-in `ILogger` for success and error logging
+- [x] Secure SMTP with TLS/SSL support
+- [x] Send email in one line — `await _emailService.SendEmailAsync(...)`
 
 ---
 
+## 📦 Installation
 
-## 📦 Kurulum
-
-NuGet üzerinden yükleyebilirsin:
+Install via NuGet:
 
 ```bash
 dotnet add package AspNetCore.EmailKit
 ```
 
-## Appsettings.json Yapılandırması
+## Appsettings.json Configuration
 ```
 "EmailSettings": {
   "SmtpServer": "smtp.gmail.com",
@@ -34,28 +32,29 @@ dotnet add package AspNetCore.EmailKit
   "SenderName": "MyApp Mail Service",
   "SenderEmail": "noreply@myapp.com",
   "UserName": "noreply@myapp.com",
-  "Password": "uygulama_sifresi"
+  "Password": "app_specific_password"
 }
 
-Not: Gmail kullanıyorsan, klasik şifre yerine uygulama şifresi oluşturman gerekir.
-Hesap > Güvenlik > “2 Adımlı Doğrulama” aktif > “Uygulama Şifreleri” > Yeni oluştur.
+Note: If you’re using Gmail, you must enable 2-Step Verification and create an App Password.
+Go to: Google Account → Security → App Passwords → Create New.
 ```
 
-## Program.cs / Startup.cs Entegrasyonu
+## Integration in Program.cs / Startup.cs
 ```
 using AspNetCore.EmailKit.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// EmailKit'i servislere ekle
+// Register EmailKit
 builder.Services.AddEmailKit(builder.Configuration);
 
 var app = builder.Build();
 
 app.Run();
+
 ```
 
-## Kullanım
+## Usage Example
 ```
 using AspNetCore.EmailKit.Interface;
 
@@ -73,15 +72,16 @@ public class AccountController : ControllerBase
     {
         await _emailService.SendEmailAsync(
             toEmail: email,
-            subject: "E-posta Doğrulama",
-            body: "<h2>Hesabınızı doğrulamak için tıklayın</h2>"
+            subject: "Email Confirmation",
+            body: "<h2>Click below to confirm your account</h2>"
         );
 
-        return Ok("Doğrulama maili gönderildi.");
+        return Ok("Confirmation email sent successfully.");
     }
 }
+
 ```
-## Hata Yönetimi & Loglama
-[Information] Mail başarıyla gönderildi: test@domain.com / Hoşgeldin
-[Error] Mail gönderilirken hata oluştu: Kimlik doğrulama başarısız.
+## Error Handling & Logging
+[Information] Email sent successfully: test@domain.com / Welcome
+[Error] Error while sending email: Authentication failed.
 

@@ -4,16 +4,36 @@
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    
+
+    <!-- NuGet metadata -->
+    <Version>1.0.0</Version>
+    <Authors>yunus_emre_2000</Authors>
+    <Company>Yunus Emre</Company>
+    <PackageId>EmailKit.AspNetCore</PackageId>
+    <Title>AspNetCore.EmailKit</Title>
+    <Description>Lightweight Email Service Kit for ASP.NET Core applications. Send emails easily via SMTP with appsettings configuration and built-in logging.</Description>
+    <PackageTags>aspnetcore email smtp mailkit options configuration logging</PackageTags>
+    <RepositoryUrl>https://github.com/01YunusKaratas/AspNetCore.EmailKit</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/01YunusKaratas/AspNetCore.EmailKit</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <IncludeSymbols>false</IncludeSymbols>
+    <IncludeSource>false</IncludeSource>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+    <None Include="emailkit-icon.png" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MailKit" Version="4.14.1" />
+    <PackageReference Include="MimeKit" Version="4.14.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.10" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.10" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="9.0.10" />
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="9.0.10" />
-    <PackageReference Include="MimeKit" Version="4.14.0" />
   </ItemGroup>
 
 </Project>
