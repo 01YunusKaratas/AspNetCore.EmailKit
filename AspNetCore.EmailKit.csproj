@@ -1,34 +1,45 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+    <!-- Çoklu hedefleme: 8.0, 9.0 ve 10.0 -->
+    <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <Version>1.0.1</Version>
-    <Authors>yunus_emre_2000</Authors>
-    <Company>Yunus Emre</Company>
+
+    <!-- Paket bilgileri -->
+    <Version>1.0.2</Version>
+    <Authors>Yunus Emre Karataş</Authors>
+    <Company>Yunus Emre Karataş</Company>
     <PackageId>EmailKit.AspNetCore</PackageId>
     <Title>EmailKit.AspNetCore</Title>
-    <Description>Lightweight Email Service Kit for ASP.NET Core 8 - 9 applications. Send emails easily via SMTP with appsettings configuration and built-in logging.</Description>
+    <Description>
+      Lightweight Email Service Kit for ASP.NET Core 8, 9 and 10 applications.
+      Send emails easily via SMTP with appsettings configuration and built-in logging.
+    </Description>
     <PackageTags>aspnetcore email smtp mailkit options configuration logging</PackageTags>
     <RepositoryUrl>https://github.com/01YunusKaratas/AspNetCore.EmailKit</RepositoryUrl>
     <PackageProjectUrl>https://github.com/01YunusKaratas/AspNetCore.EmailKit</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageIcon>emailkit-icon.png</PackageIcon>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <IncludeSymbols>false</IncludeSymbols>
     <IncludeSource>false</IncludeSource>
-    <PackageIcon>emailkit-icon.png</PackageIcon>
   </PropertyGroup>
 
+  <!-- Paket dosyaları -->
   <ItemGroup>
     <None Include="README.md" Pack="true" PackagePath="\" />
     <None Include="emailkit-icon.png" Pack="true" PackagePath="\" />
   </ItemGroup>
 
+  <!-- Paket referansları -->
   <ItemGroup>
+    <!-- MailKit ve MimeKit: .NET 8 destekli, .NET 10 ile geriye uyumlu -->
     <PackageReference Include="MailKit" Version="4.14.1" />
     <PackageReference Include="MimeKit" Version="4.14.0" />
+
+    <!-- Microsoft.Extensions paketleri .NET 10 destekli -->
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.10" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.10" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="9.0.10" />
